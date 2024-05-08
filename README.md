@@ -8,8 +8,13 @@
 - **Delete**: User have option to delete the medicines which are no longer available.
 
 ## API Endpoints:
+[Screencast from 08-05-24 11_51_01 AM IST.webm](https://github.com/pratrivedi/Medication-Management-System-AXMEDRX-/assets/74233973/b7b84487-5ca2-4af7-8901-5393c0582466)
+
 
 - CURD URL: http://localhost:8000/medications/
+
+## Demo Video:
+
 
 ## Schema:
 
