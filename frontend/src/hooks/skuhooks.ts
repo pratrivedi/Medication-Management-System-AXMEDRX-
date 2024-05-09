@@ -8,6 +8,7 @@ const useMedicationManagement = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [skus, setSkus] = useState<Medication[]>([]);
   const [countries, setContries] = useState();
+  const [upload, setUpload] = useState<boolean>(false);
 
   useEffect(() => {
     console.log("calling fetching ------->");
@@ -63,6 +64,14 @@ const useMedicationManagement = () => {
     }
   };
 
+  const handleUpload = () => {
+    setUpload(true);
+  };
+
+  const handleCloseUpload = () => {
+    setUpload(false);
+  };
+
   return {
     isModalOpen,
     selectedMedication,
@@ -75,6 +84,9 @@ const useMedicationManagement = () => {
     handleCloseAddModal,
     handleDelete,
     countries,
+    handleUpload,
+    upload,
+    handleCloseUpload,
   };
 };
 
