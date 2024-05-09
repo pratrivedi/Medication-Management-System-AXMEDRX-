@@ -3,6 +3,7 @@ import React from "react";
 import MedicationModal from "@/components/editmodal/modal";
 import AddMedicineModal from "@/components/addmodal/modal";
 import useMedicationManagement from "@/hooks/skuhooks";
+import FileUpload from "@/components/file-upload";
 
 const Sku = () => {
   const {
@@ -25,6 +26,7 @@ const Sku = () => {
   return (
     <div className="flex min-h-screen  bg-gray-50">
       <div className="p-6  px-0 h-full w-full ">
+        <FileUpload />
         <div className="flex justify-end mb-4 mr-8 mt-8">
           <button
             onClick={handleAddMedicine}

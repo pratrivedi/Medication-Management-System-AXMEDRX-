@@ -44,13 +44,15 @@ class UploadMedicineData(APIView):
 
                     dose_match = re.match(r'\d+', row['dose'])
                     dose = int(dose_match.group()) if dose_match else None
-
                     medication, created = Medication.objects.get_or_create(
                         name=row['name'].capitalize(),
                         dose=dose,
                         presentation=row['presentation'].capitalize(),
-                        unit=row['unit'],
+                        defaults={'unit': row['unit']}
                     )
+                    if created is False:
+                        medication.unit = row['unit'] +  medication.unit
+                        medication.save()
 
                     medication.countries.add(*country_objects)
 
