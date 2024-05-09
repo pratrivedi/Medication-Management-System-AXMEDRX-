@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, {
   useRef,
   MouseEvent,
@@ -48,15 +49,14 @@ const UploadModal: React.FC<UploadModalProps> = ({
     }
   }, [f]);
   const changeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setF(e.target.value);
+    setF(e.target.files[0]);
   };
 
   const handleUpload = async () => {
     if (f) {
       try {
         const formData = new FormData();
-        //@ts-expect-error
-        formData.append("file", new Blob([f], { type: f.type }), f.name);
+        formData.append("file", f);
 
         const response = await fetch("http://127.0.0.1:8000/upload/", {
           method: "POST",
@@ -70,6 +70,7 @@ const UploadModal: React.FC<UploadModalProps> = ({
           setTimeout(() => {
             onClose();
           }, 3000);
+          window.location.reload();
         } else {
           console.error("Upload failed");
         }
@@ -198,7 +199,7 @@ const UploadModal: React.FC<UploadModalProps> = ({
             {f && (
               <p className="text-sm text-gray-500">
                 Selected File:{" "}
-                <span className="font-bold text-gray-500">{f}</span>
+                <span className="font-bold text-gray-500">{f.name}</span>
               </p>
             )}
             {!uploadMessage && (
