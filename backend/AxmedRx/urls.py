@@ -17,12 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from rest_framework.routers import DefaultRouter
-from medsku.views import MedicationListCreateAPIView
+from medsku.views import MedicationListCreateAPIView, UploadMedicineData
 
 router = DefaultRouter()
 router.register(r'medications', MedicationListCreateAPIView, basename='medication')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('upload/', UploadMedicineData.as_view(), name='upload'),
     path('', include(router.urls)),
 ]
